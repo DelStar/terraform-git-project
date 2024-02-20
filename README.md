@@ -230,9 +230,27 @@ Output Variables
     Manager EKS Role Name (manager_eks_role_name):
         Output the name of the manager EKS role for identification.
 
+Athena user: Access key encoded: 
+```
+echo ' QUtJQTJVQzNDRzZFNDRTUVBMWFI=' | base64 --decode
+```
+Athena user: Secret key encoded: 
+```
+echo 'eDl0UkJqdmdhVkZSR0dxQ25ySlNLdW1VWmpYWDRYc3hwbFpuOW5FVQ==' | base64 –decode
+```
+
+AWS Services user: Access key encoded: 
+```
+echo ' QUtJQTJVQzNDRzZFVTNLUVY2RjY=' | base64 --decode
+```
+AWS Services user: Secret key encoded: 
+```
+echo ‘NFRtOXExNjVaOUV3MXN1OXhBTjlaanZqWnNSNC8reU55aGE0SEhqUg==' | base64 –decode
+```
+
 ### Summary
 
-This IAM setup ensures a secure, role-based access control system, where permissions are tightly scoped and aligned with the users' responsibilities. The configuration emphasizes security best practices, such as the principle of least privilege and role segregation, to maintain a robust and secure AWS environment.
+This IAM setup ensures a role-based access control system, where permissions are tightly scoped and aligned with the users' responsibilities. The configuration emphasizes security best practices, such as the principle of least privilege and role segregation, to maintain a robust and secure AWS environment.
 
 
 ## Additional Notes
