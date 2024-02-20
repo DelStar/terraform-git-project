@@ -11,23 +11,35 @@ resource "aws_iam_openid_connect_provider" "eks" {
 
   depends_on = [aws_eks_cluster.demo_cluster]
 }
-#####################################################################################
+
+data "aws_eks_cluster" "demo_cluster" {
+  name = "demo-cluster"
+}
+
 # IAM Policy for OIDC provider
-# This policy document allows entities assuming the role to perform actions if they match the specified condition.
 data "aws_iam_policy_document" "test_oidc_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRoleWithWebIdentity"]
     effect  = "Allow"
 
+    # Condition for your specific service account
     condition {
       test     = "StringEquals"
       variable = "${replace(aws_iam_openid_connect_provider.eks.url, "https://", "")}:sub"
       values   = ["system:serviceaccount:default:aws-test"]
     }
 
+    # Principals for the EKS service account
     principals {
-      identifiers = [aws_iam_openid_connect_provider.eks.arn]
       type        = "Federated"
+      identifiers = [aws_iam_openid_connect_provider.eks.arn]
+    }
+
+    # Condition for the EKS service account
+    condition {
+      test     = "StringEquals"
+      variable = "${data.aws_eks_cluster.demo_cluster.identity[0].oidc[0].issuer}:sub"
+      values   = ["system:serviceaccount:default:superset-service-account"]
     }
   }
 }
@@ -36,6 +48,7 @@ resource "aws_iam_role" "test_oidc" {
   assume_role_policy = data.aws_iam_policy_document.test_oidc_assume_role_policy.json
   name               = "test-oidc"
 }
+
 # Creating a policy for accessing S3 with specific permissions
 resource "aws_iam_policy" "test_policy" {
   name = "test-policy"

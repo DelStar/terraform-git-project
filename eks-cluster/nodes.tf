@@ -17,7 +17,7 @@ resource "aws_eks_node_group" "private-nodes" {
     data.terraform_remote_state.network.outputs.private_subnet_ids[0], data.terraform_remote_state.network.outputs.private_subnet_ids[1]
   ]
 
-  capacity_type  = "SPOT"
+  capacity_type  = "ON_DEMAND"
   instance_types = ["t3.large"]
 
   scaling_config {
@@ -35,7 +35,9 @@ resource "aws_eks_node_group" "private-nodes" {
   }
   # This tags are important if we are going to use an auto-scaler
   tags = {
-    "k8s.io/cluster-autoscaler/demo_cluster" = "owned"
+    "k8s.io/cluster/demo-cluster" = "owned"
+    "kubernetes.io/role/elb"       = "1"
+    "k8s.io/cluster-autoscaler/demo-cluster" = "owned"
     "k8s.io/cluster-autoscaler/enabled"      = true
   }
 }
