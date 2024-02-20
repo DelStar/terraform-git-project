@@ -53,7 +53,6 @@ resource "aws_iam_role" "eks_managers" {
 }
 
 
-
 resource "aws_iam_role_policy_attachment" "admin_policy" {
   role       = aws_iam_role.eks_managers.name
   policy_arn = aws_iam_policy.eks_admin.arn
@@ -76,5 +75,60 @@ output "eks_admin_policy_arn" {
 
 output "manager_eks_role_name" {
   value = aws_iam_role.eks_managers.name  
+}
+
+
+
+
+resource "kubernetes_deployment" "superset" {
+  metadata {
+    name      = "superset"
+    namespace = "default"
+  }
+
+  spec {
+    replicas = 1
+
+    selector {
+      match_labels = {
+        app = "superset"
+      }
+    }
+
+    template {
+      metadata {
+        labels = {
+          app = "superset"
+        }
+      }
+
+      spec {
+        container {
+          image = "apache/superset"
+          name  = "superset"
+
+          env {
+            name  = "SUPERSET_DB_URI"
+            value = "mysql://myuser:mypassword@localhost:3306/superset_db"
+          }
+
+          resources {
+            limits = {
+              cpu    = "1000m"
+              memory = "1024Mi"
+            }
+            requests = {
+              cpu    = "500m"
+              memory = "512Mi"
+            }
+          }
+
+          port {
+            container_port = 8088
+          }
+        }
+      }
+    }
+  }
 }
 

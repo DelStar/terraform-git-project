@@ -6,7 +6,7 @@ cd users
 terraform destroy -auto-approve
 echo "IAM Users and Roles destoyed!"
 
-cd ../cluster
+cd ../eks-cluster
 terraform destroy -auto-approve
 echo "Cluster with the Autoscaler destroyed!"
 
