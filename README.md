@@ -1,4 +1,4 @@
-# Data Platform SRE Engineer - Take Home Assessment
+# Superset Deploymen on EKS using Terraform
 
 ## Project Overview
 
@@ -10,7 +10,7 @@ This project aims to demonstrate the setup of a data platform using AWS services
 
 ### S3 Bucket with KMS Encryption:
 
-An S3 bucket is defined with KMS encryption to store the CSV dataset securely.
+An S3 bucket is defined with KMS encryption to securely store the CSV dataset.
 
 ### IAM Role for Athena:
 
@@ -258,3 +258,6 @@ This IAM setup ensures a role-based access control system, where permissions are
 The current state of the project reflects an initial attempt to establish a data platform on AWS using Terraform and deploy Superset for visualization.
 The project does serve as a starting point, and further modifications are necessary to achieve full functionality.
 
+## License
+
+This project is licensed under the [GNU General Public License (GPL)](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
