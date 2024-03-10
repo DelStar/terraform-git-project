@@ -232,20 +232,20 @@ Output Variables
 
 Athena user: Access key encoded: 
 ```
-echo ' QUtJQTJVQzNDRzZFNDRTUVBMWFI=' | base64 --decode
+
 ```
 Athena user: Secret key encoded: 
 ```
-echo 'eDl0UkJqdmdhVkZSR0dxQ25ySlNLdW1VWmpYWDRYc3hwbFpuOW5FVQ==' | base64 –decode
+
 ```
 
 AWS Services user: Access key encoded: 
 ```
-echo ' QUtJQTJVQzNDRzZFVTNLUVY2RjY=' | base64 --decode
+
 ```
 AWS Services user: Secret key encoded: 
 ```
-echo ‘NFRtOXExNjVaOUV3MXN1OXhBTjlaanZqWnNSNC8reU55aGE0SEhqUg==' | base64 –decode
+
 ```
 
 ### Summary
