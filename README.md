@@ -10,7 +10,7 @@ This project aims to demonstrate the setup of a data platform using AWS services
 
 ### S3 Bucket with KMS Encryption:
 
-An S3 bucket is defined with KMS encryption to store the CSV dataset securely.
+An S3 bucket is defined with KMS encryption to securely store the CSV dataset.
 
 ### IAM Role for Athena:
 
