@@ -34,7 +34,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "lottery_data_buck
 }
 
 # Uploading the lottery data file to the encrypted S3 bucket
-resource "aws_s3_bucket_object" "lottery_mega_data_file" {
+resource "aws_s3_object" "lottery_mega_data_file" {
   bucket = aws_s3_bucket.lottery_data_bucket.bucket
   key    = "lottery-mega-data-file.csv"
   source = "/home/user/terraform-git-project/lotto.csv"
